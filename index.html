@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa - Ofertas Especiales</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ✅ WCAG 2.4.1: Saltar bloques repetitivos -->
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+    <header class="header" role="banner">
+        <div class="menu container">
+            <a href="#" class="logo" aria-label="Logo - Ir a inicio">logo</a>
+
+            <!-- ✅ WCAG 4.1.2: Botón real con ARIA en lugar de checkbox oculto -->
+            <button
+                class="menu-btn"
+                id="menu-btn"
+                aria-expanded="false"
+                aria-controls="navbar"
+                aria-label="Abrir menú de navegación"
+            >
+                <img src="images/menu.png" class="menu-icono" alt="" aria-hidden="true">
+                <span class="sr-only">Menú</span>
+            </button>
+
+            <!-- ✅ WCAG 1.3.1 + 2.4.6: Nav con aria-label descriptivo -->
+            <nav class="navbar" id="navbar" aria-label="Navegación principal" hidden>
+                <ul role="list">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- ✅ WCAG 4.1.3: aria-live para anunciar cambios en el carrito -->
+            <div class="carrito-wrapper">
+                <button
+                    class="carrito-btn"
+                    id="carrito-toggle"
+                    aria-expanded="false"
+                    aria-controls="carrito"
+                    aria-label="Ver carrito de compras, 0 artículos"
+                >
+                    <img src="images/car.svg" id="img-carrito" alt="" aria-hidden="true">
+                    <span class="carrito-contador" id="carrito-contador" aria-hidden="true">0</span>
+                </button>
+
+                <div
+                    id="carrito"
+                    role="dialog"
+                    aria-label="Carrito de compras"
+                    aria-modal="false"
+                    hidden
+                >
+                    <!-- Región live para anunciar cambios dinámicos -->
+                    <div aria-live="polite" aria-atomic="true" class="sr-only" id="carrito-anuncio"></div>
+
+                    <table id="lista-carrito" aria-label="Productos en el carrito">
+                        <thead>
+                            <tr>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carrito-tbody"></tbody>
+                    </table>
+
+                    <p id="carrito-vacio" class="carrito-vacio-msg">El carrito está vacío</p>
+
+                    <button id="vaciar-carrito" class="btn-2" aria-label="Vaciar todos los productos del carrito">
+                        Vaciar Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-content container">
+            <div class="header-img" aria-hidden="true">
+                <img src="images/right1.jpg" alt="">
+            </div>
+            <div class="header-txt">
+                <h1>Ofertas especiales</h1>
+                <p>Estrena las mejores prendas</p>
+                <a href="#lista-1" class="btn-1">Ver productos</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ✅ WCAG 1.3.1: section con aria-label descriptivo -->
+    <section class="ofert container" aria-label="Categorías destacadas">
+
+        <article class="ofert-1">
+            <div class="ofert-img">
+                <img src="images/f1.png" alt="Colección casual de verano">
+            </div>
+            <div class="ofert-txt">
+                <h2>Colección Casual</h2>
+                <a href="#" class="btn-2" aria-label="Ver información de Colección Casual">Información</a>
+            </div>
+        </article>
+
+        <article class="ofert-1">
+            <div class="ofert-img">
+                <img src="images/f2.png" alt="Colección deportiva primavera">
+            </div>
+            <div class="ofert-txt">
+                <h2>Colección Deportiva</h2>
+                <a href="#" class="btn-2" aria-label="Ver información de Colección Deportiva">Información</a>
+            </div>
+        </article>
+
+        <article class="ofert-1">
+            <div class="ofert-img">
+                <img src="images/f3.png" alt="Colección formal de temporada">
+            </div>
+            <div class="ofert-txt">
+                <h2>Colección Formal</h2>
+                <a href="#" class="btn-2" aria-label="Ver información de Colección Formal">Información</a>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- ✅ WCAG 2.4.2 + 1.3.1: id para el skip link, role main -->
+    <main class="product container" id="contenido-principal" tabindex="-1">
+        <h2>Productos</h2>
+
+        <!-- ✅ WCAG 1.3.1: lista de productos con role="list" -->
+        <ul class="product-content" id="lista-1" role="list">
+
+            <li class="product" role="listitem">
+                <img src="images/4.jpg" alt="Camiseta Elisium color azul marino">
+                <div class="product-txt">
+                    <h3>Elisium Azul</h3>
+                    <p>Calidad premium</p>
+                    <p class="precio">
+                        <span class="sr-only">Precio:</span>
+                        <span aria-label="200 pesos">$200</span>
+                    </p>
+                    <!-- ✅ WCAG 2.4.6: botón con contexto claro -->
+                    <button
+                        class="agregar-carrito btn-2"
+                        data-id="1"
+                        data-nombre="Elisium Azul"
+                        data-precio="$200"
+                        data-imagen="images/4.jpg"
+                        aria-label="Agregar Elisium Azul al carrito"
+                    >
+                        Agregar al carrito
+                    </button>
+                </div>
+            </li>
+
+            <li class="product" role="listitem">
+                <img src="images/5.jpg" alt="Camiseta Elisium color blanco">
+                <div class="product-txt">
+                    <h3>Elisium Blanco</h3>
+                    <p>Calidad premium</p>
+                    <p class="precio">
+                        <span class="sr-only">Precio:</span>
+                        <span aria-label="200 pesos">$200</span>
+                    </p>
+                    <button
+                        class="agregar-carrito btn-2"
+                        data-id="2"
+                        data-nombre="Elisium Blanco"
+                        data-precio="$200"
+                        data-imagen="images/5.jpg"
+                        aria-label="Agregar Elisium Blanco al carrito"
+                    >
+                        Agregar al carrito
+                    </button>
+                </div>
+            </li>
+
+            <li class="product" role="listitem">
+                <img src="images/6.jpg" alt="Camiseta Elisium color negro">
+                <div class="product-txt">
+                    <h3>Elisium Negro</h3>
+                    <p>Calidad premium</p>
+                    <p class="precio">
+                        <span class="sr-only">Precio:</span>
+                        <span aria-label="200 pesos">$200</span>
+                    </p>
+                    <button
+                        class="agregar-carrito btn-2"
+                        data-id="3"
+                        data-nombre="Elisium Negro"
+                        data-precio="$200"
+                        data-imagen="images/6.jpg"
+                        aria-label="Agregar Elisium Negro al carrito"
+                    >
+                        Agregar al carrito
+                    </button>
+                </div>
+            </li>
+
+        </ul>
+    </main>
+
+    <!-- ✅ WCAG 1.3.1: Iconos de beneficios con roles semánticos -->
+    <section class="icon container" aria-label="Beneficios de la tienda">
+
+        <div class="icon-1">
+            <div class="icon-img">
+                <img src="images/i1.svg" alt="" aria-hidden="true">
+            </div>
+            <div class="icon-txt">
+                <h3>Envío Gratis</h3>
+                <p>En compras mayores a $500</p>
+            </div>
+        </div>
+
+        <div class="icon-1">
+            <div class="icon-img">
+                <img src="images/i2.svg" alt="" aria-hidden="true">
+            </div>
+            <div class="icon-txt">
+                <h3>Devoluciones</h3>
+                <p>30 días sin preguntas</p>
+            </div>
+        </div>
+
+        <div class="icon-1">
+            <div class="icon-img">
+                <img src="images/i3.svg" alt="" aria-hidden="true">
+            </div>
+            <div class="icon-txt">
+                <h3>Pago Seguro</h3>
+                <p>Transacciones protegidas</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ✅ WCAG 1.3.1: Blog como lista de artículos -->
+    <section class="blog container" aria-label="Artículos del blog">
+
+        <article class="blog-1">
+            <img src="images/b1.jpg" alt="Tendencias de moda para este otoño">
+            <h3>Tendencias Otoño 2025</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis eaque illum, suscipit nobis, optio officia ea accusamus veniam, maiores voluptas odit praesentium dolorum!</p>
+            <a href="#" aria-label="Leer artículo: Tendencias Otoño 2025">Leer más</a>
+        </article>
+
+        <article class="blog-1">
+            <img src="images/b2.jpg" alt="Guía de combinaciones de ropa casual">
+            <h3>Guía de Combinaciones</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis eaque illum, suscipit nobis, optio officia ea accusamus veniam, maiores voluptas odit praesentium dolorum!</p>
+            <a href="#" aria-label="Leer artículo: Guía de Combinaciones">Leer más</a>
+        </article>
+
+        <article class="blog-1">
+            <img src="images/b3.jpg" alt="Cómo cuidar tus prendas premium">
+            <h3>Cuida tus Prendas</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis eaque illum, suscipit nobis, optio officia ea accusamus veniam, maiores voluptas odit praesentium dolorum!</p>
+            <a href="#" aria-label="Leer artículo: Cuida tus Prendas">Leer más</a>
+        </article>
+
+    </section>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content container">
+
+            <nav aria-label="Acerca de nosotros">
+                <h3>Nosotros</h3>
+                <ul role="list">
+                    <li><a href="#">Historia</a></li>
+                    <li><a href="#">Equipo</a></li>
+                    <li><a href="#">Misión</a></li>
+                    <li><a href="#">Valores</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-label="Productos y servicios">
+                <h3>Productos</h3>
+                <ul role="list">
+                    <li><a href="#">Camisetas</a></li>
+                    <li><a href="#">Pantalones</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-label="Soporte al cliente">
+                <h3>Soporte</h3>
+                <ul role="list">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <nav aria-label="Redes sociales">
+                <h3>Síguenos</h3>
+                <ul role="list">
+                    <li><a href="#" aria-label="Visitar Instagram de la tienda">Instagram</a></li>
+                    <li><a href="#" aria-label="Visitar Facebook de la tienda">Facebook</a></li>
+                    <li><a href="#" aria-label="Visitar Twitter de la tienda">Twitter</a></li>
+                    <li><a href="#" aria-label="Visitar TikTok de la tienda">TikTok</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </footer>
+
+    <script src="scrip.js"></script>
+</body>
+</html>

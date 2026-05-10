@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/*
+font-family: 'Oswald', sans-serif;
+font-family: 'Poppins', sans-serif;
+*/
+
+/* ============================================
+   RESET BASE
+   ============================================ */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+img{
+    max-width: 100%;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   ✅ WCAG 2.4.1 — SKIP LINK (Saltar bloques)
+   Visible SOLO al recibir foco con teclado
+   ============================================ */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background-color: #111111;
+    color: #ffffff;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    z-index: 9999;
+    border-radius: 0 0 6px 0;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ============================================
+   ✅ WCAG 1.4.3 — TEXTO SOLO PARA LECTORES
+   Visualmente oculto pero accesible
+   ============================================ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============================================
+   ✅ WCAG 2.4.7 — FOCO VISIBLE GLOBAL
+   Todo elemento interactivo muestra foco claro
+   ============================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid #005fcc;
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* Quitar outline por defecto solo si hay :focus-visible */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header{
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+    background-color: aliceblue;
+    padding: 70px;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    font-size: 25px;
+    /* ✅ WCAG 1.4.3: color con contraste suficiente sobre fondo claro */
+    color: #111111;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+/* ============================================
+   NAVEGACIÓN
+   ============================================ */
+.menu .navbar ul li {
+    position: relative;
+    float: left;
+}
+
+.menu .navbar ul li a {
+    font-size: 18px;
+    padding: 20px;
+    color: #111111;
+    display: block;
+}
+
+/* ✅ WCAG 2.4.7: El menú desktop es visible por defecto */
+.navbar {
+    display: flex;
+}
+
+/* ============================================
+   ✅ WCAG 4.1.2 — BOTÓN MENÚ HAMBURGUESA
+   Reemplaza el hack del checkbox por un botón real
+   ============================================ */
+
+/* Ocultar el viejo input checkbox — ya no se usa */
+#menu {
+    display: none;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: none; /* Solo visible en mobile */
+    border-radius: 4px;
+}
+
+.menu-icono {
+    width: 25px;
+    display: block;
+}
+
+/* ============================================
+   CARRITO
+   ============================================ */
+.carrito-wrapper {
+    position: relative;
+}
+
+/* ✅ WCAG 4.1.2: Botón real para el carrito */
+.carrito-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    position: relative;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+#img-carrito {
+    width: 30px;
+}
+
+.carrito-contador {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #cc0000;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Ocultar cuando está en 0 */
+}
+
+/* ✅ WCAG 1.4.3: Carrito con fondo de alto contraste (>4.5:1) */
+#carrito {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 100;
+    /* Fondo sólido oscuro en lugar del semitransparente original */
+    background-color: #2a2a2a;
+    padding: 20px;
+    min-width: 400px;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border: 1px solid #444444;
+}
+
+#carrito[hidden] {
+    display: none;
+}
+
+table{
+    width: 100%;
+}
+
+/* ✅ WCAG 1.4.3: Texto blanco sobre fondo #2a2a2a = ratio ~12:1 */
+th, td{
+    color: #ffffff;
+    padding: 6px 4px;
+    font-size: 14px;
+}
+
+th {
+    border-bottom: 1px solid #555555;
+    font-weight: 600;
+}
+
+.borrar{
+    background-color: #cc0000;
+    border-radius: 4px;
+    padding: 4px 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-block;
+    /* ✅ WCAG 2.5.5: Target mínimo 24x24px */
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrito-vacio-msg {
+    color: #cccccc;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
+
+/* ============================================
+   HEADER CONTENT
+   ============================================ */
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 0 200px;
+}
+
+.header-img{
+    flex-basis: 40%;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.header-img img{
+    border-radius: 50%;
+}
+
+.header-txt{
+    flex-basis: 50%;
+    text-align: center;
+}
+
+.header-txt h1{
+    font-size: 90px;
+    text-transform: uppercase;
+    line-height: 1;
+    /* ✅ WCAG 1.4.3: #111111 sobre aliceblue = ratio >10:1 */
+    color: #111111;
+    font-family: "Oswald", sans-serif;
+    margin-bottom: 15px;
+}
+
+.header-txt p {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+/* ✅ WCAG 1.4.3: botones con contraste suficiente */
+.btn-1{
+    display: inline-block;
+    padding: 11px 25px;
+    background-color: #111111;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: 600;
+    /* ✅ WCAG 2.5.5: Target mínimo */
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* ============================================
+   SECCIÓN OFERTAS
+   ============================================ */
+.ofert {
+    padding: 20px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ofert-1 {
+    display: flex;
+    align-items: center;
+    flex-basis: calc(33.3% - 15px);
+    background-color: #f5f5f5;
+    padding: 35px;
+}
+
+.ofert-img {
+    flex-basis: 50%;
+    margin-right: 15px;
+}
+
+.ofert-img img {
+    width: 250px;
+}
+
+.ofert-txt{
+    flex-basis: 50%;
+    text-align: center;
+}
+
+.ofert-txt h2 {
+    color: #111111;
+    font-family: "Oswald", sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.btn-2{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background-color: #111111;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    /* ✅ WCAG 2.5.5: Área mínima de toque 44x44px */
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.btn-2:hover {
+    background-color: #333333;
+}
+
+/* ============================================
+   SECCIÓN PRODUCTOS
+   ============================================ */
+.product-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.product-section h2 {
+    color: #111111;
+    font-family: "Oswald", sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+/* ✅ WCAG 1.3.1: ul como grid en vez de div */
+.product-content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+/* ✅ Sobreescribir list-style del reset para <ul> que es lista de productos */
+ul.product-content {
+    list-style: none;
+}
+
+.product {
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+/* ✅ WCAG 2.4.7: Estado hover visible en tarjeta de producto */
+.product:focus-within {
+    box-shadow: 0 0 0 3px #005fcc;
+}
+
+.product img{
+    width: 350px;
+    height: 250px;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.product h3{
+    font-size: 20px;
+    color: #111111;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.product p, .precio{
+    font-size: 16px;
+    color: #111111;
+    margin-bottom: 15px;
+}
+
+.precio{
+    font-weight: 800;
+}
+
+/* También el main que contiene la lista */
+.product.container {
+    padding: 50px 0;
+}
+
+main.product {
+    padding: 50px 0;
+}
+
+main.product h2 {
+    color: #111111;
+    font-family: "Oswald", sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* ============================================
+   SECCIÓN ÍCONOS / BENEFICIOS
+   ============================================ */
+.icon {
+    padding: 50px 0 100px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-1 {
+    flex-basis: calc(33.3% - 30px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    background-color: #F5F5F5;
+    border-radius: 6px;
+}
+
+.icon-txt h3{
+    font-size: 20px;
+    /* ✅ WCAG 1.4.3: #111111 sobre #f5f5f5 = ratio >10:1 */
+    color: #111111;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+}
+
+.icon-txt p {
+    font-size: 16px;
+    color: #333333;
+}
+
+/* ============================================
+   SECCIÓN BLOG
+   ============================================ */
+.blog {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 100px;
+}
+
+.blog-1{
+    flex-basis: calc(33.3% - 30px);
+}
+
+.blog-1 img{
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.blog-1 h3{
+    font-size: 20px;
+    color: #111111;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.blog-1 p { 
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 12px;
+}
+
+.blog-1 a {
+    color: #005fcc;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.blog-1 a:hover {
+    color: #003d99;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer{
+    padding: 50px 0;
+    background-color: #111111;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ✅ WCAG 1.3.1: nav en footer con h3 como encabezados */
+.footer-content nav h3 {
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* ✅ WCAG 1.4.3: #DCDCDC sobre #111111 = ratio >10:1 */
+.footer-content nav a {
+    font-size: 16px;
+    color: #DCDCDC;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-content nav a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* ============================================
+   ✅ WCAG 1.4.4 — TEXTO REDIMENSIONABLE
+   Usar rem en lugar de px para texto base
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   RESPONSIVE — max-width: 991px
+   ============================================ */
+@media (max-width: 991px){
+    .menu{
+        padding: 20px;
+    }
+
+    /* ✅ Mostrar botón hamburguesa real */
+    .menu-btn {
+        display: block;
+    }
+
+    .menu .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #181818;
+        flex-direction: column;
+    }
+
+    /* ✅ WCAG: El menú se oculta con hidden (atributo), no solo CSS */
+    .menu .navbar[hidden] {
+        display: none;
+    }
+
+    .menu .navbar:not([hidden]) {
+        display: flex;
+    }
+
+    .menu .navbar ul {
+        width: 100%;
+    }
+
+    .menu .navbar ul li{
+        width: 100%;
+    }
+
+    .menu .navbar ul li a{
+        color: #ffffff;
+    }
+
+    .logo{
+        display: none;
+    }
+
+    #carrito{
+        min-width: 100%;
+    }
+
+    .header{
+        min-height: 0vh;
+    }
+
+    .header-content{
+        padding: 50px 0;
+        flex-direction: column;
+    }
+
+    .header-img{
+        display: none;
+    }
+
+    .header-txt{
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .header-txt h1{
+        font-size: 70px;
+    }
+
+    .ofert{
+        padding: 30px 30px 0 30px;
+        flex-direction: column;
+    }
+
+    .ofert-1{
+        margin-bottom: 30px;
+    }
+
+    main.product{
+        padding: 0 30px 30px 30px;
+    }
+
+    main.product h2{
+        margin-bottom: 30px;
+    }
+
+    .product-content{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px;
+    }
+
+    .product img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .icon{
+        padding: 30px;
+        flex-direction: column;
+    }
+
+    .icon-1{
+        margin-bottom: 30px;
+    }
+
+    .blog{
+        padding: 0 30px 30px 30px;
+        flex-direction: column;
+    }
+
+    .blog-1{
+        margin-top: 30px;
+    }
+
+    .footer{
+        padding: 30px;
+    }
+
+    .footer-content{
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+}
