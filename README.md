@@ -1,2 +1,1 @@
-# Tienda
-Diseño accesible
+# ClothingStore
